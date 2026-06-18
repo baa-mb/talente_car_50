@@ -1,3 +1,8 @@
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    gang = (gang + 1) % 6
+    music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
+    basic.showNumber(gang)
+})
 function berechne_rad_werte () {
     kurve_links = kurve_rad * -1
     kurve_rechts = kurve_rad
@@ -18,10 +23,11 @@ rad_links_korrektur = 1
     robotbit.MotorStopAll()
 }
 radio.onReceivedValue(function (info, wert) {
+    grenze = 205 + gang * 10
     // serial.writeValue("kurve_rad", kurve_rad)
     if (info == "gerade") {
         gerade_get = wert
-        gerade_rad = Math.round(Math.map(gerade_get, -45, 45, -255, 255))
+        gerade_rad = Math.round(Math.map(gerade_get, -45, 45, -1 * grenze, grenze))
     } else if (info == "kurve") {
         kurve_get = wert
         kurve_rad = Math.round(Math.map(kurve_get, -45, 45, -255, 255))
@@ -46,6 +52,7 @@ input.onButtonPressed(Button.B, function () {
 let oben = false
 let kurve_get = 0
 let gerade_get = 0
+let grenze = 0
 let hebe_winkel = 0
 let rechts_soll = 0
 let links_soll = 0
@@ -56,13 +63,14 @@ let gerade_links = 0
 let kurve_rechts = 0
 let kurve_rad = 0
 let kurve_links = 0
+let gang = 0
 let feinheit = 0
-let rad_links = 0
-let rad_rechts = 0
-let motor_links = 0
-let motor_rechts = 0
-let links_ist = 0
 let rechts_ist = 0
+let links_ist = 0
+let motor_rechts = 0
+let motor_links = 0
+let rad_rechts = 0
+let rad_links = 0
 feinheit = 0.5
 init()
 basic.forever(function () {

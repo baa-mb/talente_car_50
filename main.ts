@@ -40,6 +40,7 @@ radio.onReceivedValue(function (info, wert) {
     }
 })
 input.onButtonPressed(Button.B, function () {
+    let oben = 0
     // robotbit.Servo(robotbit.Servos.S1, 0)
     // robotbit.Servo(robotbit.Servos.S1, hebe_winkel)
     if (oben) {
@@ -47,9 +48,7 @@ input.onButtonPressed(Button.B, function () {
     } else {
     	
     }
-    oben = !(oben)
 })
-let oben = false
 let kurve_get = 0
 let gerade_get = 0
 let grenze = 0

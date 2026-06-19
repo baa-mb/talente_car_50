@@ -3,7 +3,7 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
     basic.showNumber(gang)
 })
-function berechne_rad_werte () {
+function berechne_rad_werte() {
     kurve_links = kurve_rad * -1
     kurve_rechts = kurve_rad
     gerade_links = gerade_rad * rad_links_korrektur
@@ -12,13 +12,13 @@ function berechne_rad_werte () {
     rechts_soll = Math.round((gerade_rechts + kurve_rechts * feinheit) / 2)
 }
 // robotbit.Servo(robotbit.Servos.S1, 0)
-function init () {
+function init() {
     radio.setGroup(26)
     basic.showIcon(IconNames.Diamond)
     hebe_winkel = 70
     motor_rechts = robotbit.Motors.M1A
-motor_links = robotbit.Motors.M2A
-rad_links_korrektur = 1
+    motor_links = robotbit.Motors.M2A
+    rad_links_korrektur = 1
     feinheit = 0.4
     robotbit.MotorStopAll()
 }
@@ -33,9 +33,9 @@ radio.onReceivedValue(function (info, wert) {
         kurve_rad = Math.round(Math.map(kurve_get, -45, 45, -255, 255))
     } else if (info == "get_dist") {
         radio.sendValue("distanz", sonar.ping(
-        DigitalPin.P1,
-        DigitalPin.P2,
-        PingUnit.Centimeters
+            DigitalPin.P1,
+            DigitalPin.P2,
+            PingUnit.Centimeters
         ))
         basic.showNumber(0)
     }
@@ -55,12 +55,12 @@ let kurve_rad = 0
 let kurve_links = 0
 let gang = 0
 let feinheit = 0
-let rad_links = 0
-let rad_rechts = 0
-let motor_links = 0
-let motor_rechts = 0
-let links_ist = 0
 let rechts_ist = 0
+let links_ist = 0
+let motor_rechts = 0
+let motor_links = 0
+let rad_rechts = 0
+let rad_links = 0
 feinheit = 0.5
 init()
 basic.forever(function () {
@@ -79,7 +79,7 @@ basic.forever(function () {
         robotbit.MotorStopAll()
     } else {
         robotbit.MotorRun(motor_links, links_ist)
-robotbit.MotorRun(motor_rechts, rechts_ist)
+        robotbit.MotorRun(motor_rechts, rechts_ist)
     }
     basic.pause(10)
 })

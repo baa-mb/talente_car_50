@@ -31,22 +31,13 @@ radio.onReceivedValue(function (info, wert) {
     } else if (info == "kurve") {
         kurve_get = wert
         kurve_rad = Math.round(Math.map(kurve_get, -45, 45, -255, 255))
-    } else if (info == "kupplung") {
-        if (wert == 0) {
-            robotbit.Servo(robotbit.Servos.S1, 0)
-        } else {
-            robotbit.Servo(robotbit.Servos.S1, hebe_winkel)
-        }
-    }
-})
-input.onButtonPressed(Button.B, function () {
-    let oben = 0
-    // robotbit.Servo(robotbit.Servos.S1, 0)
-    // robotbit.Servo(robotbit.Servos.S1, hebe_winkel)
-    if (oben) {
-    	
-    } else {
-    	
+    } else if (info == "get_dist") {
+        radio.sendValue("distanz", sonar.ping(
+        DigitalPin.P1,
+        DigitalPin.P2,
+        PingUnit.Centimeters
+        ))
+        basic.showNumber(0)
     }
 })
 let kurve_get = 0
@@ -64,12 +55,12 @@ let kurve_rad = 0
 let kurve_links = 0
 let gang = 0
 let feinheit = 0
-let rechts_ist = 0
-let links_ist = 0
-let motor_rechts = 0
-let motor_links = 0
-let rad_rechts = 0
 let rad_links = 0
+let rad_rechts = 0
+let motor_links = 0
+let motor_rechts = 0
+let links_ist = 0
+let rechts_ist = 0
 feinheit = 0.5
 init()
 basic.forever(function () {

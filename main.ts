@@ -1,5 +1,5 @@
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    gang = (gang + 1) % 4
+    gang = (gang + 1) % 6
     music.play(music.tonePlayable(262, music.beat(BeatFraction.Whole)), music.PlaybackMode.UntilDone)
     basic.showNumber(gang)
 })
@@ -23,7 +23,7 @@ function init() {
     robotbit.MotorStopAll()
 }
 radio.onReceivedValue(function (info, wert) {
-    grenze = 225 + gang * 10
+    grenze = 205 + gang * 10
     // serial.writeValue("kurve_rad", kurve_rad)
     if (info == "gerade") {
         gerade_get = wert
